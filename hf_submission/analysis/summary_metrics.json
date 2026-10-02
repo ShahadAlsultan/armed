@@ -1,0 +1,790 @@
+{
+  "source": {
+    "review_file": "analysis/human_review.csv",
+    "raw_outputs": "results/evaluation_raw_outputs.jsonl",
+    "model": "Qwen/Qwen3.5-4B",
+    "run_id": "20261002T132459Z",
+    "n_cases": 100
+  },
+  "overall": {
+    "final_answer_accuracy": {
+      "n": 100,
+      "count": 81,
+      "rate": 0.81
+    },
+    "reason_supported": {
+      "n": 100,
+      "count": 80,
+      "rate": 0.8
+    },
+    "final_correct_and_reason_supported": {
+      "n": 100,
+      "count": 80,
+      "rate": 0.8
+    },
+    "unsupported_assumption": {
+      "n": 100,
+      "count": 5,
+      "rate": 0.05
+    }
+  },
+  "by_language": {
+    "ar": {
+      "final_answer_accuracy": {
+        "n": 50,
+        "count": 37,
+        "rate": 0.74
+      },
+      "reason_supported": {
+        "n": 50,
+        "count": 36,
+        "rate": 0.72
+      },
+      "final_correct_and_reason_supported": {
+        "n": 50,
+        "count": 36,
+        "rate": 0.72
+      },
+      "unsupported_assumption": {
+        "n": 50,
+        "count": 3,
+        "rate": 0.06
+      }
+    },
+    "en": {
+      "final_answer_accuracy": {
+        "n": 50,
+        "count": 44,
+        "rate": 0.88
+      },
+      "reason_supported": {
+        "n": 50,
+        "count": 44,
+        "rate": 0.88
+      },
+      "final_correct_and_reason_supported": {
+        "n": 50,
+        "count": 44,
+        "rate": 0.88
+      },
+      "unsupported_assumption": {
+        "n": 50,
+        "count": 2,
+        "rate": 0.04
+      }
+    }
+  },
+  "by_category": {
+    "temporal_reasoning": {
+      "final_answer_accuracy": {
+        "n": 20,
+        "count": 14,
+        "rate": 0.7
+      },
+      "reason_supported": {
+        "n": 20,
+        "count": 13,
+        "rate": 0.65
+      },
+      "final_correct_and_reason_supported": {
+        "n": 20,
+        "count": 13,
+        "rate": 0.65
+      },
+      "unsupported_assumption": {
+        "n": 20,
+        "count": 0,
+        "rate": 0.0
+      }
+    },
+    "contradiction_detection": {
+      "final_answer_accuracy": {
+        "n": 20,
+        "count": 17,
+        "rate": 0.85
+      },
+      "reason_supported": {
+        "n": 20,
+        "count": 17,
+        "rate": 0.85
+      },
+      "final_correct_and_reason_supported": {
+        "n": 20,
+        "count": 17,
+        "rate": 0.85
+      },
+      "unsupported_assumption": {
+        "n": 20,
+        "count": 2,
+        "rate": 0.1
+      }
+    },
+    "missing_evidence": {
+      "final_answer_accuracy": {
+        "n": 20,
+        "count": 15,
+        "rate": 0.75
+      },
+      "reason_supported": {
+        "n": 20,
+        "count": 15,
+        "rate": 0.75
+      },
+      "final_correct_and_reason_supported": {
+        "n": 20,
+        "count": 15,
+        "rate": 0.75
+      },
+      "unsupported_assumption": {
+        "n": 20,
+        "count": 1,
+        "rate": 0.05
+      }
+    },
+    "false_premise": {
+      "final_answer_accuracy": {
+        "n": 20,
+        "count": 19,
+        "rate": 0.95
+      },
+      "reason_supported": {
+        "n": 20,
+        "count": 19,
+        "rate": 0.95
+      },
+      "final_correct_and_reason_supported": {
+        "n": 20,
+        "count": 19,
+        "rate": 0.95
+      },
+      "unsupported_assumption": {
+        "n": 20,
+        "count": 0,
+        "rate": 0.0
+      }
+    },
+    "causal_reasoning": {
+      "final_answer_accuracy": {
+        "n": 20,
+        "count": 16,
+        "rate": 0.8
+      },
+      "reason_supported": {
+        "n": 20,
+        "count": 16,
+        "rate": 0.8
+      },
+      "final_correct_and_reason_supported": {
+        "n": 20,
+        "count": 16,
+        "rate": 0.8
+      },
+      "unsupported_assumption": {
+        "n": 20,
+        "count": 2,
+        "rate": 0.1
+      }
+    }
+  },
+  "by_language_category": {
+    "ar": {
+      "temporal_reasoning": {
+        "final_answer_accuracy": {
+          "n": 10,
+          "count": 6,
+          "rate": 0.6
+        },
+        "reason_supported": {
+          "n": 10,
+          "count": 5,
+          "rate": 0.5
+        },
+        "final_correct_and_reason_supported": {
+          "n": 10,
+          "count": 5,
+          "rate": 0.5
+        },
+        "unsupported_assumption": {
+          "n": 10,
+          "count": 0,
+          "rate": 0.0
+        }
+      },
+      "contradiction_detection": {
+        "final_answer_accuracy": {
+          "n": 10,
+          "count": 8,
+          "rate": 0.8
+        },
+        "reason_supported": {
+          "n": 10,
+          "count": 8,
+          "rate": 0.8
+        },
+        "final_correct_and_reason_supported": {
+          "n": 10,
+          "count": 8,
+          "rate": 0.8
+        },
+        "unsupported_assumption": {
+          "n": 10,
+          "count": 1,
+          "rate": 0.1
+        }
+      },
+      "missing_evidence": {
+        "final_answer_accuracy": {
+          "n": 10,
+          "count": 7,
+          "rate": 0.7
+        },
+        "reason_supported": {
+          "n": 10,
+          "count": 7,
+          "rate": 0.7
+        },
+        "final_correct_and_reason_supported": {
+          "n": 10,
+          "count": 7,
+          "rate": 0.7
+        },
+        "unsupported_assumption": {
+          "n": 10,
+          "count": 1,
+          "rate": 0.1
+        }
+      },
+      "false_premise": {
+        "final_answer_accuracy": {
+          "n": 10,
+          "count": 9,
+          "rate": 0.9
+        },
+        "reason_supported": {
+          "n": 10,
+          "count": 9,
+          "rate": 0.9
+        },
+        "final_correct_and_reason_supported": {
+          "n": 10,
+          "count": 9,
+          "rate": 0.9
+        },
+        "unsupported_assumption": {
+          "n": 10,
+          "count": 0,
+          "rate": 0.0
+        }
+      },
+      "causal_reasoning": {
+        "final_answer_accuracy": {
+          "n": 10,
+          "count": 7,
+          "rate": 0.7
+        },
+        "reason_supported": {
+          "n": 10,
+          "count": 7,
+          "rate": 0.7
+        },
+        "final_correct_and_reason_supported": {
+          "n": 10,
+          "count": 7,
+          "rate": 0.7
+        },
+        "unsupported_assumption": {
+          "n": 10,
+          "count": 1,
+          "rate": 0.1
+        }
+      }
+    },
+    "en": {
+      "temporal_reasoning": {
+        "final_answer_accuracy": {
+          "n": 10,
+          "count": 8,
+          "rate": 0.8
+        },
+        "reason_supported": {
+          "n": 10,
+          "count": 8,
+          "rate": 0.8
+        },
+        "final_correct_and_reason_supported": {
+          "n": 10,
+          "count": 8,
+          "rate": 0.8
+        },
+        "unsupported_assumption": {
+          "n": 10,
+          "count": 0,
+          "rate": 0.0
+        }
+      },
+      "contradiction_detection": {
+        "final_answer_accuracy": {
+          "n": 10,
+          "count": 9,
+          "rate": 0.9
+        },
+        "reason_supported": {
+          "n": 10,
+          "count": 9,
+          "rate": 0.9
+        },
+        "final_correct_and_reason_supported": {
+          "n": 10,
+          "count": 9,
+          "rate": 0.9
+        },
+        "unsupported_assumption": {
+          "n": 10,
+          "count": 1,
+          "rate": 0.1
+        }
+      },
+      "missing_evidence": {
+        "final_answer_accuracy": {
+          "n": 10,
+          "count": 8,
+          "rate": 0.8
+        },
+        "reason_supported": {
+          "n": 10,
+          "count": 8,
+          "rate": 0.8
+        },
+        "final_correct_and_reason_supported": {
+          "n": 10,
+          "count": 8,
+          "rate": 0.8
+        },
+        "unsupported_assumption": {
+          "n": 10,
+          "count": 0,
+          "rate": 0.0
+        }
+      },
+      "false_premise": {
+        "final_answer_accuracy": {
+          "n": 10,
+          "count": 10,
+          "rate": 1.0
+        },
+        "reason_supported": {
+          "n": 10,
+          "count": 10,
+          "rate": 1.0
+        },
+        "final_correct_and_reason_supported": {
+          "n": 10,
+          "count": 10,
+          "rate": 1.0
+        },
+        "unsupported_assumption": {
+          "n": 10,
+          "count": 0,
+          "rate": 0.0
+        }
+      },
+      "causal_reasoning": {
+        "final_answer_accuracy": {
+          "n": 10,
+          "count": 9,
+          "rate": 0.9
+        },
+        "reason_supported": {
+          "n": 10,
+          "count": 9,
+          "rate": 0.9
+        },
+        "final_correct_and_reason_supported": {
+          "n": 10,
+          "count": 9,
+          "rate": 0.9
+        },
+        "unsupported_assumption": {
+          "n": 10,
+          "count": 1,
+          "rate": 0.1
+        }
+      }
+    }
+  },
+  "binary_polarity": {
+    "ar": {
+      "expected_yes": {
+        "n": 20,
+        "count": 8,
+        "rate": 0.4
+      },
+      "expected_no": {
+        "n": 20,
+        "count": 20,
+        "rate": 1.0
+      },
+      "model_answered_no": {
+        "n": 40,
+        "count": 32,
+        "rate": 0.8
+      }
+    },
+    "en": {
+      "expected_yes": {
+        "n": 20,
+        "count": 16,
+        "rate": 0.8
+      },
+      "expected_no": {
+        "n": 20,
+        "count": 18,
+        "rate": 0.9
+      },
+      "model_answered_no": {
+        "n": 40,
+        "count": 22,
+        "rate": 0.55
+      }
+    }
+  },
+  "minimal_pair_consistency": {
+    "ar": {
+      "overall": {
+        "n": 25,
+        "count": 12,
+        "rate": 0.48
+      },
+      "by_category": {
+        "temporal_reasoning": {
+          "n": 5,
+          "count": 1,
+          "rate": 0.2
+        },
+        "contradiction_detection": {
+          "n": 5,
+          "count": 3,
+          "rate": 0.6
+        },
+        "missing_evidence": {
+          "n": 5,
+          "count": 2,
+          "rate": 0.4
+        },
+        "false_premise": {
+          "n": 5,
+          "count": 4,
+          "rate": 0.8
+        },
+        "causal_reasoning": {
+          "n": 5,
+          "count": 2,
+          "rate": 0.4
+        }
+      },
+      "inconsistent_pairs": [
+        "CAU-02",
+        "CAU-04",
+        "CAU-05",
+        "CON-01",
+        "CON-05",
+        "FPR-05",
+        "MIS-01",
+        "MIS-04",
+        "MIS-05",
+        "TMP-01",
+        "TMP-02",
+        "TMP-03",
+        "TMP-05"
+      ],
+      "binary_pairs_same_label_for_A_and_B": {
+        "n": 20,
+        "count": 12,
+        "rate": 0.6,
+        "pair_ids": [
+          "CAU-02",
+          "CAU-04",
+          "CAU-05",
+          "CON-01",
+          "CON-05",
+          "MIS-01",
+          "MIS-04",
+          "MIS-05",
+          "TMP-01",
+          "TMP-02",
+          "TMP-03",
+          "TMP-05"
+        ]
+      }
+    },
+    "en": {
+      "overall": {
+        "n": 25,
+        "count": 19,
+        "rate": 0.76
+      },
+      "by_category": {
+        "temporal_reasoning": {
+          "n": 5,
+          "count": 3,
+          "rate": 0.6
+        },
+        "contradiction_detection": {
+          "n": 5,
+          "count": 4,
+          "rate": 0.8
+        },
+        "missing_evidence": {
+          "n": 5,
+          "count": 3,
+          "rate": 0.6
+        },
+        "false_premise": {
+          "n": 5,
+          "count": 5,
+          "rate": 1.0
+        },
+        "causal_reasoning": {
+          "n": 5,
+          "count": 4,
+          "rate": 0.8
+        }
+      },
+      "inconsistent_pairs": [
+        "CAU-02",
+        "CON-01",
+        "MIS-04",
+        "MIS-05",
+        "TMP-03",
+        "TMP-05"
+      ],
+      "binary_pairs_same_label_for_A_and_B": {
+        "n": 20,
+        "count": 6,
+        "rate": 0.3,
+        "pair_ids": [
+          "CAU-02",
+          "CON-01",
+          "MIS-04",
+          "MIS-05",
+          "TMP-03",
+          "TMP-05"
+        ]
+      }
+    }
+  },
+  "cross_language_consistency": {
+    "n_scenarios": 50,
+    "mcnemar_exact_p_two_sided": 0.0654,
+    "overall": {
+      "both_correct": 35,
+      "arabic_only_correct": 2,
+      "english_only_correct": 9,
+      "both_incorrect": 4
+    },
+    "by_category": {
+      "temporal_reasoning": {
+        "both_correct": 5,
+        "arabic_only_correct": 1,
+        "english_only_correct": 3,
+        "both_incorrect": 1
+      },
+      "contradiction_detection": {
+        "both_correct": 8,
+        "arabic_only_correct": 0,
+        "english_only_correct": 1,
+        "both_incorrect": 1
+      },
+      "missing_evidence": {
+        "both_correct": 7,
+        "arabic_only_correct": 0,
+        "english_only_correct": 1,
+        "both_incorrect": 2
+      },
+      "false_premise": {
+        "both_correct": 9,
+        "arabic_only_correct": 0,
+        "english_only_correct": 1,
+        "both_incorrect": 0
+      },
+      "causal_reasoning": {
+        "both_correct": 6,
+        "arabic_only_correct": 1,
+        "english_only_correct": 3,
+        "both_incorrect": 0
+      }
+    },
+    "scenarios": {
+      "arabic_only_correct": [
+        "CAU-02B",
+        "TMP-05A"
+      ],
+      "english_only_correct": [
+        "CAU-02A",
+        "CAU-04B",
+        "CAU-05A",
+        "CON-05B",
+        "FPR-05A",
+        "MIS-01A",
+        "TMP-01B",
+        "TMP-02A",
+        "TMP-05B"
+      ],
+      "both_incorrect": [
+        "CON-01A",
+        "MIS-04A",
+        "MIS-05A",
+        "TMP-03A"
+      ]
+    }
+  },
+  "error_types": {
+    "rows_with_error_label": 20,
+    "label_counts": {
+      "answer_reason_mismatch": {
+        "total": 8,
+        "ar": 6,
+        "en": 2,
+        "ids": [
+          "AR-CAU-04B",
+          "AR-CAU-05A",
+          "AR-CON-05B",
+          "AR-TMP-02A",
+          "AR-TMP-03A",
+          "AR-TMP-05B",
+          "EN-MIS-04A",
+          "EN-TMP-03A"
+        ]
+      },
+      "format_self_correction": {
+        "total": 3,
+        "ar": 2,
+        "en": 1,
+        "ids": [
+          "AR-CAU-05A",
+          "AR-CON-01A",
+          "EN-MIS-04A"
+        ]
+      },
+      "overconstraint_extra_item": {
+        "total": 2,
+        "ar": 1,
+        "en": 1,
+        "ids": [
+          "AR-MIS-05A",
+          "EN-MIS-05A"
+        ]
+      },
+      "temporal_order_error": {
+        "total": 2,
+        "ar": 1,
+        "en": 1,
+        "ids": [
+          "AR-TMP-01B",
+          "EN-TMP-05A"
+        ]
+      },
+      "unsupported_reconciliation": {
+        "total": 2,
+        "ar": 1,
+        "en": 1,
+        "ids": [
+          "AR-CON-01A",
+          "EN-CON-01A"
+        ]
+      },
+      "causal_temporal_error": {
+        "total": 1,
+        "ar": 0,
+        "en": 1,
+        "ids": [
+          "EN-CAU-02B"
+        ]
+      },
+      "evidence_extraction_error": {
+        "total": 1,
+        "ar": 1,
+        "en": 0,
+        "ids": [
+          "AR-MIS-01A"
+        ]
+      },
+      "false_premise_acceptance": {
+        "total": 1,
+        "ar": 1,
+        "en": 0,
+        "ids": [
+          "AR-FPR-05A"
+        ]
+      },
+      "reasoning_contradiction": {
+        "total": 1,
+        "ar": 1,
+        "en": 0,
+        "ids": [
+          "AR-TMP-05A"
+        ]
+      },
+      "truncated_output": {
+        "total": 1,
+        "ar": 1,
+        "en": 0,
+        "ids": [
+          "AR-MIS-04A"
+        ]
+      },
+      "unsupported_assumption": {
+        "total": 1,
+        "ar": 0,
+        "en": 1,
+        "ids": [
+          "EN-CAU-02B"
+        ]
+      },
+      "unsupported_medical_assumption": {
+        "total": 1,
+        "ar": 1,
+        "en": 0,
+        "ids": [
+          "AR-CAU-02A"
+        ]
+      },
+      "unsupported_requirement": {
+        "total": 1,
+        "ar": 1,
+        "en": 0,
+        "ids": [
+          "AR-MIS-04A"
+        ]
+      }
+    }
+  },
+  "truncation": {
+    "max_new_tokens": 512,
+    "n_truncated": 1,
+    "cases": [
+      {
+        "id": "AR-MIS-04A",
+        "n_output_tokens": 512,
+        "stopped_on_eos": false,
+        "human_final_correct": "no",
+        "human_error_type": "unsupported_requirement;truncated_output"
+      }
+    ],
+    "multiple_final_answer_lines": [
+      {
+        "id": "AR-CAU-05A",
+        "human_final_correct": "no"
+      },
+      {
+        "id": "AR-CON-01A",
+        "human_final_correct": "no"
+      },
+      {
+        "id": "EN-MIS-04A",
+        "human_final_correct": "no"
+      }
+    ],
+    "grading_note": "When a response contains more than one FINAL_ANSWER line, the first one was graded."
+  }
+}

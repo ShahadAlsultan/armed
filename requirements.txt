@@ -1,0 +1,3 @@
+# Local dataset validation and lightweight analysis only.
+# Model inference runs on Kaggle; no PyTorch/transformers needed locally.
+pandas>=2.0
