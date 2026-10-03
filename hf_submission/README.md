@@ -77,8 +77,8 @@ notebooks/evaluation.ipynb           Kaggle inference notebook
 
 The validation and summary scripts are in the project code repository.
 
-Code repository: TO_BE_ADDED
-Hugging Face project/bucket: TO_BE_ADDED
+Code repository: https://github.com/ShahadAlsultan/armed
+Hugging Face dataset: https://huggingface.co/datasets/dataaishahad/ArabicMedReason
 
 ## Limitations
 

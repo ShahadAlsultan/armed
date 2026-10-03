@@ -190,7 +190,7 @@ This project was prepared for the Fatima Institute of Technology technical chall
 
 ## Hugging Face
 
-Hugging Face project/bucket: TO_BE_ADDED
+Hugging Face dataset: https://huggingface.co/datasets/dataaishahad/ArabicMedReason
 
 ## Ethics
 
