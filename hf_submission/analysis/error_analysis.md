@@ -25,8 +25,8 @@ All numbers below are computed by `src/summarize_human_review.py` from the human
 - `expected_answer`, `expected_reason`, `evidence_flip` and all identifiers were hidden from the model. The
   notebook asserts that none of them appear in any rendered prompt.
 - Raw responses are stored unmodified in `results/evaluation_raw_outputs.jsonl`.
-- Each of the 100 responses was graded manually. The final grading decisions were reviewed by the applicant.
-  Each row records:
+- Per-case outputs were reviewed using a structured rubric (`analysis/review_guide.md`), and aggregate metrics
+  were computed from these labels. Each row records:
   - `human_final_correct`: whether `FINAL_ANSWER` matches the reference. For false-premise items, an explicit
     rejection of an unsupported premise counts as correct; exact wording is not required.
   - `human_reason_supported`: whether `REASON` uses the decisive evidence in the case **and** is consistent with
@@ -243,7 +243,7 @@ affirmative.
 - The evaluation is small: 100 cases, 25 pairs per language and 10 cases per language × category cell. All
   differences are descriptive, and per-cell percentages move 10 points with a single case.
 - The Arabic items are Modern Standard Arabic only, with no dialects or other registers.
-- Grading was done by a single human reviewer. Judgments about reasoning support and unsupported assumptions
+- The labels come from one review pass with no second reviewer. Judgments about reasoning support and unsupported assumptions
   involve some subjectivity, and inter-annotator agreement was not measured.
 - The items have not been independently reviewed by clinicians or professional Arabic linguists.
 - These results make no claim about real-world clinical safety or medical competence.

@@ -10,12 +10,20 @@ open-weight language model reasons about clinical evidence equally well in both 
 
 ## Motivation
 
-Most medical evaluations of language models are in English and measure knowledge recall. A model can score
-well by matching familiar patterns ("new drug + rash → drug reaction") without checking whether the evidence in
-a case supports the conclusion. Arabic is spoken by hundreds of millions of people, but it is far less
-represented in clinical NLP evaluation. If a model's reasoning is weaker or less stable in Arabic, an
-English-only evaluation will not show it. Minimal pairs make this testable: if one decisive fact changes and the
-answer does not, the model is not tracking the evidence.
+As an Arabic-speaking AI student, I wanted to know whether a model that looks competent in English stays
+equally consistent when the same evidence is given in Arabic. I chose clinical cases because the answer often
+depends on one specific fact (a date, a time, one record entry), and a model can reach the right label by
+matching a familiar pattern ("new drug + rash → drug reaction") without checking that fact. I focused on small
+evidence changes because accuracy alone cannot show whether a model is tracking the decisive fact. Minimal pairs
+make this testable: if the one decisive fact changes and the answer does not, the model is not following the
+evidence.
+
+### Why This Gap Matters
+
+Many standard medical benchmarks report final-answer accuracy. They rarely include matched Arabic and English
+versions of the same case, rarely change a single piece of evidence to flip the answer, and do not check whether
+the stated reason agrees with the final label. An English-only evaluation that scores only the final answer could
+therefore miss instability that appears only in Arabic. This benchmark tests these three things together.
 
 ## Benchmark Design
 
@@ -61,13 +69,14 @@ The full configuration, prompt template and dataset SHA-256 are recorded in `res
 - Reference answers, gold rationales, evidence-flip notes and all identifiers were hidden from the model. The
   notebook asserts that none of them appear in any prompt.
 - Raw responses are preserved exactly in `results/evaluation_raw_outputs.jsonl`.
-- All 100 responses were graded manually. The final grading decisions were reviewed by the applicant
-  (`analysis/human_review.csv`; rubric in `analysis/review_guide.md`). Each response was graded on:
+- Per-case outputs were reviewed using a structured rubric (`analysis/review_guide.md`). Each case was labelled
+  in `analysis/human_review.csv` on:
   - final-answer correctness;
   - whether the reason cites the decisive evidence and is consistent with the final answer;
   - unsupported assumptions;
   - an error type.
-- **No LLM judge was used.** `src/summarize_human_review.py` only aggregates the human labels.
+- Aggregate metrics were then computed from these labels. **No LLM judge was used.**
+  `src/summarize_human_review.py` only aggregates the review labels.
 
 ## Results
 
@@ -96,17 +105,26 @@ Full metrics: [`analysis/summary_metrics.json`](analysis/summary_metrics.json) a
 
 ## Key Findings
 
-- **Lower and less stable performance in Arabic.** English accuracy was equal or higher in every category.
-  Minimal-pair consistency fell from 76% (English) to 48% (Arabic). With 50 matched scenarios the gap is
-  descriptive, not statistically established.
-- **Arabic negative-label bias.** All 12 Arabic errors on binary items were an expected نعم (Yes) answered
-  لا (No). On expected-Yes items, Arabic accuracy was 8/20, against 20/20 on expected-No items (English: 16/20 and
-  18/20). In 12 of the 20 Arabic binary pairs the model answered لا to both variants, so it did not update when
-  the evidence flipped.
-- **Answer–reason mismatch.** This was the most common error (8 cases, 6 of them Arabic). The explanation
-  identifies the decisive evidence correctly, but the final label contradicts it.
-- **False premises were handled well.** 19/20 were correct. The only failure (AR-FPR-05A) treated a
-  *discussed* ICU transfer as an actual one.
+- **Lower and less stable performance in Arabic.** In this evaluation, Arabic accuracy was 74% against 88% for
+  English, and English was higher in every category. Minimal-pair consistency was 48% in Arabic against 76% in
+  English. Across the 50 matched scenarios the difference did not reach statistical significance (exact McNemar
+  p = 0.065), so the observed gap is descriptive.
+- **Arabic expected-Yes items failed disproportionately.** All 12 Arabic errors on binary items were an expected
+  نعم (Yes) answered لا (No). On expected-Yes items, Arabic accuracy was 8/20, against 20/20 on expected-No items
+  (English: 16/20 and 18/20). In 12 of the 20 Arabic binary pairs the model gave the same label to both variants,
+  so it did not update when the evidence flipped. This suggests a negative-label bias in Arabic for this model and
+  prompt.
+- **Answer–reason mismatch was the most common error.** It occurred in 8 cases, 6 of them Arabic. The
+  explanation identifies the decisive evidence, but the final label contradicts it.
+- **False premises were handled comparatively well.** 19/20 were correct. The only failure (AR-FPR-05A)
+  treated a *discussed* ICU transfer as an actual one.
+
+## What I Found Most Interesting
+
+What stood out most to me was that many failures were not cases where the model misread the evidence. In the
+8 mismatch cases it described the decisive fact correctly and then gave the opposite final label, and all 8
+expected Yes. This makes the gap look less like missing knowledge and more like instability between the
+reasoning and the answer it selects, which a final-answer-only score would hide.
 
 ## Example Failure Cases
 
@@ -126,8 +144,8 @@ Full metrics: [`analysis/summary_metrics.json`](analysis/summary_metrics.json) a
 - One model, one prompt template and one deterministic decoding setup were used, with thinking disabled.
 - The evaluation is small: 100 cases, 10 per language × category cell. All results are descriptive.
 - Arabic coverage is Modern Standard Arabic only, with no dialects.
-- A single human reviewer graded the responses. Reasoning-quality judgments involve some subjectivity, and
-  inter-annotator agreement was not measured.
+- The labels come from one review pass with no second reviewer. Reasoning-quality judgments involve some
+  subjectivity, and inter-annotator agreement was not measured.
 - The items were not independently validated by clinicians.
 - **No claim is made about real-world clinical safety or medical competence.**
 
@@ -147,16 +165,15 @@ ArabicMedReason/
 │   ├── prepare_human_review.py         # builds the review sheet from raw outputs
 │   └── summarize_human_review.py       # aggregates the human review into metrics
 ├── results/
-│   ├── raw_outputs.jsonl               # pilot raw outputs
-│   ├── run_config.json                 # pilot run configuration
 │   ├── evaluation_raw_outputs.jsonl    # 100 raw model responses
 │   └── evaluation_run_config.json      # full-run configuration
-└── analysis/
-    ├── human_review.csv                # per-case human grading
-    ├── review_guide.md                 # grading rubric
-    ├── summary_metrics.json            # all computed metrics
-    ├── summary_metrics.csv             # headline metrics (long format)
-    └── error_analysis.md               # results and error analysis
+├── analysis/
+│   ├── human_review.csv                # per-case review labels
+│   ├── review_guide.md                 # grading rubric
+│   ├── summary_metrics.json            # all computed metrics
+│   ├── summary_metrics.csv             # headline metrics (long format)
+│   └── error_analysis.md               # results and error analysis
+└── hf_submission/                      # Hugging Face dataset card and copies of the released files
 ```
 
 ## Reproducibility
@@ -179,14 +196,22 @@ file with LF line endings.
 
 ## FIT Challenge
 
-This project was prepared for the Fatima Institute of Technology technical challenge.
+This project was prepared for the Fatima Institute of Technology "Blind Spots of Frontier Models" challenge.
 
-- It probes a potential blind spot in a frontier open-weight model: whether clinical reasoning that works in
-  English holds up in Arabic when a single piece of evidence changes the answer.
-- The evaluation uses controlled, matched Arabic–English minimal-pair cases with hidden references and manual
-  grading.
-- The raw outputs, run configuration, per-case grading, computed metrics and error analysis are all included in
-  this repository.
+**Blind spot.** Small frontier models can look competent on standard accuracy benchmarks while their evidence
+tracking, minimal-pair robustness and answer–reason consistency are weaker in Arabic than in matched English
+cases. In this evaluation of `Qwen/Qwen3.5-4B`, the Arabic results were lower on all three. The evidence is
+controlled matched minimal pairs with hidden references and rubric-based per-case labels. The raw outputs, run
+configuration, per-case labels, metrics and error analysis are all in this repository.
+
+**Proposed path forward (not tested here):**
+- Build Arabic–English matched minimal-pair data so that both languages get the same evidence-sensitive signal.
+- Train contrastively on evidence flips, so the model is rewarded for changing its answer when the decisive fact
+  changes.
+- Supervise answer–reason consistency, so the final label must follow from the stated reason.
+- Balance Yes/No polarity in Arabic training and evaluation data to counter the negative-label bias seen here.
+- Extend Arabic instruction tuning across Modern Standard Arabic and dialects.
+- Add calibration or abstention when the reasoning and the answer disagree, instead of emitting a confident label.
 
 ## Hugging Face
 
